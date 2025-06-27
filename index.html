@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人导航</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36B37E',
+                        tertiary: '#FF5630',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .link-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-inter flex flex-col items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:shadow-2xl">
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                <i class="fa fa-user-circle text-primary text-2xl"></i>
+            </div>
+            <h1 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-gray-800 mb-2 text-shadow">个人导航</h1>
+            <p class="text-gray-600">快速访问我的个人服务</p>
+        </div>
+        
+        <div class="space-y-4">
+            <a href="https://cn.bing.com" target="_blank" rel="noopener noreferrer" 
+               class="w-full flex items-center justify-center bg-primary text-white py-4 px-6 rounded-xl font-semibold text-lg link-hover hover:bg-primary/90">
+                <i class="fa fa-search mr-2"></i>
+                访问bing
+            </a>
+            
+            
+            
+            <a href="https://www.123912.com/s/XJFcVv-LP8g3" target="_blank" rel="noopener noreferrer" 
+               class="w-full flex items-center justify-center bg-tertiary text-white py-4 px-6 rounded-xl font-semibold text-lg link-hover hover:bg-tertiary/90">
+                <i class="fa fa-cloud mr-2"></i>
+                访问我的网盘
+            </a>
+        </div>
+        
+        <div class="mt-8 text-center text-sm text-gray-500">
+            <p>网盘密码:sr66</p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.max-w-md');
+            container.classList.add('opacity-0', 'translate-y-4');
+            setTimeout(() => {
+                container.classList.remove('opacity-0', 'translate-y-4');
+            }, 100);
+            
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.href.includes('[') && this.href.includes(']')) {
+                        e.preventDefault();
+                        const service = this.textContent.includes('博客') ? '博客' : '网盘';
+                        alert(`请将链接替换为您的${service}实际地址`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+    
